@@ -1,0 +1,62 @@
+<Container>
+  <Name>plex-overlay</Name>
+  <Repository>youruser/plex-overlay</Repository>
+  <Registry>https://hub.docker.com/r/youruser/plex-overlay</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/youruser/plex-overlay/issues</Support>
+  <Project>https://github.com/youruser/plex-overlay</Project>
+  <Overview>A self-contained Docker container that listens to Plex webhooks and shows a Now Playing poster. Ideal for dashboards like DAKboard.</Overview>
+  <Category>MediaServer:Tools</Category>
+  <WebUI>http://[IP]:[STATIC_PORT]/now-playing.png</WebUI>
+
+  <Environment>
+    <Variable>
+      <Name>PLEX_HOST</Name>
+      <Value>http://192.168.1.10:32400</Value>
+      <Description>Your Plex server URL (with port)</Description>
+    </Variable>
+    <Variable>
+      <Name>PLEX_TOKEN</Name>
+      <Value></Value>
+      <Description>Your Plex access token</Description>
+    </Variable>
+    <Variable>
+      <Name>CANVAS_WIDTH</Name>
+      <Value>1080</Value>
+      <Description>Image width in pixels</Description>
+    </Variable>
+    <Variable>
+      <Name>CANVAS_HEIGHT</Name>
+      <Value>1920</Value>
+      <Description>Image height in pixels</Description>
+    </Variable>
+    <Variable>
+      <Name>WEBHOOK_PORT</Name>
+      <Value>8080</Value>
+      <Description>Port for webhook listener</Description>
+    </Variable>
+    <Variable>
+      <Name>STATIC_PORT</Name>
+      <Value>8081</Value>
+      <Description>Port for image access</Description>
+    </Variable>
+  </Environment>
+
+  <Port>
+    <HostPort>8080</HostPort>
+    <ContainerPort>8080</ContainerPort>
+    <Protocol>tcp</Protocol>
+    <Description>Webhook endpoint</Description>
+  </Port>
+  <Port>
+    <HostPort>8081</HostPort>
+    <ContainerPort>8081</ContainerPort>
+    <Protocol>tcp</Protocol>
+    <Description>Static image server</Description>
+  </Port>
+
+  <Icon>https://raw.githubusercontent.com/mbirnbach/unraid-docker-templates/main/icons/plex-overlay.png</Icon>
+</Container>
