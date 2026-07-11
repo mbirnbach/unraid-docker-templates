@@ -21,6 +21,19 @@ Docker Hub: [https://hub.docker.com/r/mbirnbach/plex-overlay](https://hub.docker
 
 ---
 
+### 🖥️ Hallway Dashboard
+**Description**: Self-hosted, always-on wall-display dashboard for a hallway/kitchen TV (portrait orientation). Clock, weather + 6-day forecast, sunrise/sunset, indoor temp/humidity (Home Assistant), a rolling 4-week calendar (personal + waste/bin collection), a NINA/BBK civil-protection alert banner, a monthly background photo, and a random joke. Every field is optional and degrades gracefully.
+
+- Web UI: `http://[IP]:8080/`
+- Ports: 8080 (web UI)
+- Configurable via environment variables (weather location, ICS calendar URLs, AGS code, Home Assistant, clock format, accent color)
+- Volume: `backgrounds` folder for monthly background photos (`01.jpg` … `12.jpg`)
+
+GitHub: [https://github.com/mbirnbach/hallway-dash](https://github.com/mbirnbach/hallway-dash)  
+Docker Hub: [https://hub.docker.com/r/mbirnbach/hallway-dash](https://hub.docker.com/r/mbirnbach/hallway-dash)
+
+---
+
 ## 🧰 How to Use This Repo in Unraid
 
 1. In the Unraid web UI, go to **Apps > Settings**
