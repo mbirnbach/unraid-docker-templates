@@ -1,0 +1,98 @@
+<Container>
+  <Name>hallway-dash</Name>
+  <Repository>mbirnbach/hallway-dash</Repository>
+  <Registry>https://hub.docker.com/r/mbirnbach/hallway-dash</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/mbirnbach/hallway-dash/issues</Support>
+  <Project>https://github.com/mbirnbach/hallway-dash</Project>
+  <Overview>Self-hosted, always-on wall-display dashboard for a hallway/kitchen TV (portrait orientation). Clock, date, current weather + 6-day forecast, sunrise/sunset, indoor temp/humidity (via Home Assistant), a rolling 4-week calendar (personal events + waste/bin-collection days), a NINA/BBK civil-protection alert banner, a rotating monthly background photo, and a random joke. All third-party API calls happen server-side, so your Home Assistant token never reaches the display. Every field below is optional and degrades gracefully if left blank.</Overview>
+  <Category>HomeAutomation:Tools</Category>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+
+  <Environment>
+    <Variable>
+      <Name>LATITUDE</Name>
+      <Value>52.52</Value>
+      <Description>Latitude for Open-Meteo weather lookups</Description>
+    </Variable>
+    <Variable>
+      <Name>LONGITUDE</Name>
+      <Value>13.405</Value>
+      <Description>Longitude for Open-Meteo weather lookups</Description>
+    </Variable>
+    <Variable>
+      <Name>LOCATION_LABEL</Name>
+      <Value>Zuhause</Value>
+      <Description>Display name shown next to the current weather</Description>
+    </Variable>
+    <Variable>
+      <Name>CALENDAR_ICS_URL</Name>
+      <Value></Value>
+      <Description>ICS feed URL for your personal calendar (leave blank to hide)</Description>
+    </Variable>
+    <Variable>
+      <Name>WASTE_ICS_URL</Name>
+      <Value></Value>
+      <Description>ICS feed URL for waste/bin-collection days (leave blank to hide; renders as amber pills)</Description>
+    </Variable>
+    <Variable>
+      <Name>AGS_CODE</Name>
+      <Value></Value>
+      <Description>12-digit Amtlicher Gemeindeschluessel for NINA/BBK civil-protection alerts (leave blank to disable)</Description>
+    </Variable>
+    <Variable>
+      <Name>JOKE_API_URL</Name>
+      <Value>https://nopunintended.xyz</Value>
+      <Description>Joke source (plain-text response expected); falls back to JokeAPI.dev automatically if unreachable</Description>
+    </Variable>
+    <Variable>
+      <Name>HA_URL</Name>
+      <Value></Value>
+      <Description>Base URL of your Home Assistant instance, e.g. http://192.168.1.10:8123 (leave blank to hide indoor stat)</Description>
+    </Variable>
+    <Variable>
+      <Name>HA_TOKEN</Name>
+      <Value></Value>
+      <Description>Home Assistant long-lived access token</Description>
+    </Variable>
+    <Variable>
+      <Name>HA_TEMP_ENTITY</Name>
+      <Value>sensor.hallway_temperature</Value>
+      <Description>Entity ID of your indoor temperature sensor</Description>
+    </Variable>
+    <Variable>
+      <Name>HA_HUMIDITY_ENTITY</Name>
+      <Value>sensor.hallway_humidity</Value>
+      <Description>Entity ID of your indoor humidity sensor</Description>
+    </Variable>
+    <Variable>
+      <Name>CLOCK_FORMAT</Name>
+      <Value>24h</Value>
+      <Description>24h or 12h</Description>
+    </Variable>
+    <Variable>
+      <Name>ACCENT_COLOR</Name>
+      <Value>#F5A524</Value>
+      <Description>Hex accent color used for bin-day pills, today's date circle, and the "Heute" label</Description>
+    </Variable>
+  </Environment>
+
+  <Port>
+    <HostPort>8080</HostPort>
+    <ContainerPort>8080</ContainerPort>
+    <Protocol>tcp</Protocol>
+    <Description>Dashboard web UI</Description>
+  </Port>
+
+  <Volume>
+    <HostDir>/mnt/user/appdata/hallway-dash/backgrounds</HostDir>
+    <ContainerDir>/app/backgrounds</ContainerDir>
+    <Mode>rw</Mode>
+    <Description>Folder containing 01.jpg ... 12.jpg monthly background photos (missing months fall back to a placeholder automatically)</Description>
+  </Volume>
+
+  <Icon>https://raw.githubusercontent.com/mbirnbach/unraid-docker-templates/main/icons/hallway-dash.png</Icon>
+</Container>
